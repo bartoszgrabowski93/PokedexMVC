@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Interace\" />
-    <Folder Include="Model\" />
-  </ItemGroup>
-
 </Project>
