@@ -10,7 +10,7 @@ namespace PokedexMVC.Domain.Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public  ICollection<PokemonTyping> PokemonTypings { get; set;}
+        public virtual ICollection<Move> Moves { get; set;}
         
     }
 }
