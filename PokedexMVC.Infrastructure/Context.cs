@@ -39,6 +39,7 @@ namespace PokedexMVC.Infrastructure
             builder.Entity<Pokemon>()
                .HasOne(a => a.Statistic).WithOne(b => b.Pokemon)
                .HasForeignKey<Statistic>(e => e.PokemonRef);
+            
            
         }
     }
