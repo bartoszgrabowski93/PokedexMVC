@@ -14,7 +14,7 @@ namespace PokedexMVC.Domain.Interface
         void DeletePokemon(int pokemonId);
         Pokemon GetPokemonById(int pokemonId);
         Pokemon GetPokemonByPokdexNumber(int pokemonNumber);
-        IQueryable<Pokemon> GetPokemonsByTypingId(int typeId);
+        
        
     }
 }

@@ -49,10 +49,6 @@ namespace PokedexMVC.Infrastructure.Repositories
             return pokemon;
 
         }
-        public IQueryable<Pokemon> GetPokemonsByTypingId(int typeId)
-        {
-            var pokemons = _context.Pokemons.Where(i => i.PrimaryTypeId == typeId || i.SecondaryTypeId == typeId);
-            return pokemons;
-        }
+        
     }
 }

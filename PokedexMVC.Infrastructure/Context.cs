@@ -16,6 +16,7 @@ namespace PokedexMVC.Infrastructure
         public DbSet<Moveset> Movesets { get; set; }
         public DbSet<Pokemon> Pokemons { get; set; }
         public DbSet<PokemonDescription> PokemonDescriptions { get; set; }
+        public DbSet<PokemonTyping> PokemonTypings { get; set; }
         public DbSet<Statistic> Statistics { get; set; }
         public DbSet<Typing> Typings { get; set; }
 
@@ -39,8 +40,20 @@ namespace PokedexMVC.Infrastructure
             builder.Entity<Pokemon>()
                .HasOne(a => a.Statistic).WithOne(b => b.Pokemon)
                .HasForeignKey<Statistic>(e => e.PokemonRef);
-            
-           
+
+            builder.Entity<PokemonTyping>()
+                .HasKey(it => new { it.PokemonId, it.TypingId });
+
+            builder.Entity<PokemonTyping>()
+                .HasOne<Pokemon>(it => it.Pokemon)
+                .WithMany(p => p.PokemonTypings)
+                .HasForeignKey(it => it.PokemonId);
+
+            builder.Entity<PokemonTyping>()
+                .HasOne<Typing>(it => it.Typing)
+                .WithMany(t => t.PokemonTypings)
+                .HasForeignKey(it => it.TypingId);
+
         }
     }
     
