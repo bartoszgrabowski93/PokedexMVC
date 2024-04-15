@@ -1,4 +1,5 @@
-﻿using PokedexMVC.Domain.Model;
+﻿using PokedexMVC.Domain.Interface;
+using PokedexMVC.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PokedexMVC.Infrastructure.Repositories
 {
-    public class TypingRepository
+    public class TypingRepository : ITypingRepository
     {
         private readonly Context _context;
         public TypingRepository(Context context)
