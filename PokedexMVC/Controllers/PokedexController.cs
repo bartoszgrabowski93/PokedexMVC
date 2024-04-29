@@ -6,78 +6,57 @@ namespace PokedexMVC.Web.Controllers
     public class PokedexController : Controller
     {
         // GET: PokedexController
-        public ActionResult Index()
+        public IActionResult Index()
         {
-            return View();
+            // utworzyć widok dla tej akcji
+            // tabela z pokemonami
+            // filtrowanie pokemonów
+            // przygotowanie danych 
+            // przekazanie filtrów do serwisu
+            // serwis przygotowuje dane 
+            // serwis zwraca dane do kontrollera w odpowiednim formacie
+
+            var model = pokemonService.GetAllPokemonForList();
+            return View(model);
         }
 
         // GET: PokedexController/Details/5
-        public ActionResult Details(int id)
+        public IActionResult Details(int id)
         {
             return View();
         }
 
         // GET: PokedexController/Create
-        public ActionResult Create()
+        [HttpGet]
+        public IActionResult AddPokemon()
         {
             return View();
         }
 
         // POST: PokedexController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        [HttpPost]        
+        public IActionResult AddPokemon(PokemonModel model)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var id = pokemonService.AddPokemon(model);
+            return View();
         }
-
-        // GET: PokedexController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        public IActionResult AddPokemonDescription(int pokemonId)
         {
             return View();
         }
-
-        // POST: PokedexController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public IActionResult AddPokemonDescription(PokemonDescriptionModel model)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: PokedexController/Delete/5
-        public ActionResult Delete(int id)
-        {
+            var id = pokemonService.AddPokemonDescription(model);
             return View();
         }
 
-        // POST: PokedexController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public IActionResult ViewPokemonDetails(int pokemonId)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var pokemonDetails = pokemonService.GetPokemonDetailsById(pokemondId);
+            return View(pokemonDetails);
         }
+
     }
 }
