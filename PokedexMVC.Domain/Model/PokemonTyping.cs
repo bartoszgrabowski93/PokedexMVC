@@ -8,9 +8,12 @@ namespace PokedexMVC.Domain.Model
 {
     public class PokemonTyping
     {
-        public int PokemonId { get; set; }
-        public Pokemon Pokemon { get; set; }
-        public int TypingId { get; set;}
-        public Typing Typing { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public Typing PrimaryType { get; set; }
+        public int PrimaryTypeId { get; set; }
+        public Typing? SecondaryType { get; set; }
+        public int? SecondaryTypeId { get; set; } 
+        public ICollection<Pokemon> Pokemons { get; set; }
     }
 }
