@@ -1,28 +1,25 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PokedexMVC.Domain.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PokedexMVC.Infrastructure
 {
     public class Context : IdentityDbContext
     {
-        public DbSet<Effect> Effects { get; set; }
+        public DbSet<Ability> Abilities { get; set; }
+        public DbSet<StatusEffect> Effects { get; set; }
         public DbSet<Move> Moves { get; set; }
         public DbSet<Moveset> Movesets { get; set; }
         public DbSet<Pokemon> Pokemons { get; set; }
+        public DbSet<PokemonAbility> PokemonAbility { get; set; }
         public DbSet<PokemonDescription> PokemonDescriptions { get; set; }
-        public DbSet<PokemonAbilities> PokemonAbilities { get; set; }
         public DbSet<PokemonEvolution> PokemonEvolutions { get; set; }
+        public DbSet<PokemonTyping> PokemonTyping { get; set; }
         public DbSet<Statistic> Statistics { get; set; }
         public DbSet<Typing> Typings { get; set; }
 
-        public Context(DbContextOptions options) : base(options) 
-        { 
+        public Context(DbContextOptions options) : base(options)
+        {
 
         }
 
@@ -30,6 +27,7 @@ namespace PokedexMVC.Infrastructure
         {
             base.OnModelCreating(builder);
 
+            // Relacje jeden - jeden
             builder.Entity<Pokemon>()
                 .HasOne(a => a.Moveset).WithOne(b => b.Pokemon)
                 .HasForeignKey<Moveset>(e => e.PokemonRef);
@@ -43,13 +41,29 @@ namespace PokedexMVC.Infrastructure
                .HasForeignKey<Statistic>(e => e.PokemonRef);
 
             builder.Entity<Pokemon>()
-                .HasOne(a => a.Evolution).WithOne(b => b.Pokemon)
+                .HasOne(a => a.PokemonEvolution).WithOne(b => b.Pokemon)
                 .HasForeignKey<PokemonEvolution>(e => e.PokemonRef);
 
-           
-            
+            builder.Entity<Ability>()
+                .HasOne(a => a.AbEffect).WithOne(ae => ae.Ability)
+                .HasForeignKey<AbilityEffect>(ae => ae.AbilityId);
+
+            // Relacja Wiele-Wiele
+            builder.Entity<PokemonAbility>()
+                .HasKey(pa => new { pa.PokemonRef, pa.AbilityRef });
+
+            builder.Entity<PokemonAbility>()
+                .HasOne<Pokemon>(pa => pa.Pokemon)
+                .WithMany(p => p.PokemonAbilities)
+                .HasForeignKey(pa => pa.PokemonRef);
+
+            builder.Entity<PokemonAbility>()
+                .HasOne<Ability>(pa => pa.Ability)
+                .WithMany(a => a.PokemonAbilities)
+                .HasForeignKey(pa => pa.AbilityRef);
+
 
         }
     }
-    
+
 }

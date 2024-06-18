@@ -130,7 +130,7 @@ namespace PokedexMVC.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PokemonAbilities",
+                name: "PokemonAbility",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -184,23 +184,23 @@ namespace PokedexMVC.Infrastructure.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_PokemonAbilities_HiddenAbilityId",
-                table: "PokemonAbilities",
+                table: "PokemonAbility",
                 column: "HiddenAbilityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PokemonAbilities_PokemonId",
-                table: "PokemonAbilities",
+                table: "PokemonAbility",
                 column: "PokemonId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_PokemonAbilities_PrimaryAbilityId",
-                table: "PokemonAbilities",
+                table: "PokemonAbility",
                 column: "PrimaryAbilityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PokemonAbilities_SecondaryAbilityId",
-                table: "PokemonAbilities",
+                table: "PokemonAbility",
                 column: "SecondaryAbilityId");
 
             migrationBuilder.CreateIndex(
@@ -270,7 +270,7 @@ namespace PokedexMVC.Infrastructure.Migrations
                 table: "PokemonTyping");
 
             migrationBuilder.DropTable(
-                name: "PokemonAbilities");
+                name: "PokemonAbility");
 
             migrationBuilder.DropTable(
                 name: "PokemonEvolutions");

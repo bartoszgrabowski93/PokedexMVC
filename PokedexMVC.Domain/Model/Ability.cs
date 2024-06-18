@@ -9,8 +9,9 @@ namespace PokedexMVC.Domain.Model
     public class Ability
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string AbEffect { get; set; }
+        public string Name { get; set; }        
+        public AbilityEffect? AbEffect { get; set; }
+        public ICollection<PokemonAbility> PokemonAbilities { get; set; }
+       
     }
 }

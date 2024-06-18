@@ -227,7 +227,7 @@ namespace PokedexMVC.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("PokedexMVC.Domain.Model.Effect", b =>
+            modelBuilder.Entity("PokedexMVC.Domain.Model.StatusEffect", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -476,7 +476,7 @@ namespace PokedexMVC.Infrastructure.Migrations
 
             modelBuilder.Entity("PokedexMVC.Domain.Model.Move", b =>
                 {
-                    b.HasOne("PokedexMVC.Domain.Model.Effect", "Effect")
+                    b.HasOne("PokedexMVC.Domain.Model.StatusEffect", "StatusEffect")
                         .WithMany("Moves")
                         .HasForeignKey("EffectId");
 
@@ -490,7 +490,7 @@ namespace PokedexMVC.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Effect");
+                    b.Navigation("StatusEffect");
 
                     b.Navigation("Type");
                 });
@@ -547,7 +547,7 @@ namespace PokedexMVC.Infrastructure.Migrations
                     b.Navigation("Pokemon");
                 });
 
-            modelBuilder.Entity("PokedexMVC.Domain.Model.Effect", b =>
+            modelBuilder.Entity("PokedexMVC.Domain.Model.StatusEffect", b =>
                 {
                     b.Navigation("Moves");
                 });

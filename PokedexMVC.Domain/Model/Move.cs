@@ -15,7 +15,7 @@ namespace PokedexMVC.Domain.Model
         public bool IsPhisical { get; set; }
         public int Damage { get; set; }
         public int? EffectId { get; set; }
-        public virtual Effect? Effect { get; set; }
+        public virtual StatusEffect? Effect { get; set; }
         
     }
 }

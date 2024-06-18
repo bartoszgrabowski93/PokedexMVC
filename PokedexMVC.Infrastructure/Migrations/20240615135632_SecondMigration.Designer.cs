@@ -252,7 +252,7 @@ namespace PokedexMVC.Infrastructure.Migrations
                     b.ToTable("Ability");
                 });
 
-            modelBuilder.Entity("PokedexMVC.Domain.Model.Effect", b =>
+            modelBuilder.Entity("PokedexMVC.Domain.Model.StatusEffect", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -360,7 +360,7 @@ namespace PokedexMVC.Infrastructure.Migrations
                     b.ToTable("Pokemons");
                 });
 
-            modelBuilder.Entity("PokedexMVC.Domain.Model.PokemonAbilities", b =>
+            modelBuilder.Entity("PokedexMVC.Domain.Model.PokemonAbility", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -391,7 +391,7 @@ namespace PokedexMVC.Infrastructure.Migrations
 
                     b.HasIndex("SecondaryAbilityId");
 
-                    b.ToTable("PokemonAbilities");
+                    b.ToTable("PokemonAbility");
                 });
 
             modelBuilder.Entity("PokedexMVC.Domain.Model.PokemonDescription", b =>
@@ -592,7 +592,7 @@ namespace PokedexMVC.Infrastructure.Migrations
 
             modelBuilder.Entity("PokedexMVC.Domain.Model.Move", b =>
                 {
-                    b.HasOne("PokedexMVC.Domain.Model.Effect", "Effect")
+                    b.HasOne("PokedexMVC.Domain.Model.StatusEffect", "StatusEffect")
                         .WithMany("Moves")
                         .HasForeignKey("EffectId");
 
@@ -606,7 +606,7 @@ namespace PokedexMVC.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Effect");
+                    b.Navigation("StatusEffect");
 
                     b.Navigation("Type");
                 });
@@ -637,7 +637,7 @@ namespace PokedexMVC.Infrastructure.Migrations
                     b.Navigation("PokemonTyping");
                 });
 
-            modelBuilder.Entity("PokedexMVC.Domain.Model.PokemonAbilities", b =>
+            modelBuilder.Entity("PokedexMVC.Domain.Model.PokemonAbility", b =>
                 {
                     b.HasOne("PokedexMVC.Domain.Model.Ability", "HiddenAbility")
                         .WithMany()
@@ -645,7 +645,7 @@ namespace PokedexMVC.Infrastructure.Migrations
 
                     b.HasOne("PokedexMVC.Domain.Model.Pokemon", "Pokemon")
                         .WithOne("Abilities")
-                        .HasForeignKey("PokedexMVC.Domain.Model.PokemonAbilities", "PokemonId")
+                        .HasForeignKey("PokedexMVC.Domain.Model.PokemonAbility", "PokemonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -730,7 +730,7 @@ namespace PokedexMVC.Infrastructure.Migrations
                     b.Navigation("Pokemon");
                 });
 
-            modelBuilder.Entity("PokedexMVC.Domain.Model.Effect", b =>
+            modelBuilder.Entity("PokedexMVC.Domain.Model.StatusEffect", b =>
                 {
                     b.Navigation("Moves");
                 });

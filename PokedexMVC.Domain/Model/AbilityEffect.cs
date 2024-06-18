@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace PokedexMVC.Domain.Model
 {
-    public class Effect
+    public class AbilityEffect
     {
         public int Id { get; set; }
-        public string Name { get; set; }
         public string Description { get; set; }
-        public virtual ICollection<Move> Moves { get; set; }
+        public string Mechanism { get; set; }
+        public int AbilityId { get; set; }
+        public Ability Ability { get; set; }
+        
     }
 }
