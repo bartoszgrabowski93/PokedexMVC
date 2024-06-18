@@ -12,8 +12,8 @@ using PokedexMVC.Infrastructure;
 namespace PokedexMVC.Infrastructure.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20240615135632_SecondMigration")]
-    partial class SecondMigration
+    [Migration("20240618195312_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -235,11 +235,11 @@ namespace PokedexMVC.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AbEffect")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Mechanism")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -249,28 +249,7 @@ namespace PokedexMVC.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Ability");
-                });
-
-            modelBuilder.Entity("PokedexMVC.Domain.Model.StatusEffect", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Effects");
+                    b.ToTable("Abilities");
                 });
 
             modelBuilder.Entity("PokedexMVC.Domain.Model.Move", b =>
@@ -345,15 +324,10 @@ namespace PokedexMVC.Infrastructure.Migrations
                     b.Property<int>("PokedexNumber")
                         .HasColumnType("int");
 
-                    b.Property<int>("PokemonTypingId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TypingId")
+                    b.Property<int>("TypingId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PokemonTypingId");
 
                     b.HasIndex("TypingId");
 
@@ -362,34 +336,15 @@ namespace PokedexMVC.Infrastructure.Migrations
 
             modelBuilder.Entity("PokedexMVC.Domain.Model.PokemonAbility", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("PokemonRef")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("HiddenAbilityId")
+                    b.Property<int>("AbilityRef")
                         .HasColumnType("int");
 
-                    b.Property<int>("PokemonId")
-                        .HasColumnType("int");
+                    b.HasKey("PokemonRef", "AbilityRef");
 
-                    b.Property<int>("PrimaryAbilityId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SecondaryAbilityId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("HiddenAbilityId");
-
-                    b.HasIndex("PokemonId")
-                        .IsUnique();
-
-                    b.HasIndex("PrimaryAbilityId");
-
-                    b.HasIndex("SecondaryAbilityId");
+                    b.HasIndex("AbilityRef");
 
                     b.ToTable("PokemonAbility");
                 });
@@ -421,68 +376,6 @@ namespace PokedexMVC.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("PokemonDescriptions");
-                });
-
-            modelBuilder.Entity("PokedexMVC.Domain.Model.PokemonEvolution", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("NextEvolutionId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("NextPokemonId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PokemonRef")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PrevEvolutionId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PrevPokemonId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NextEvolutionId");
-
-                    b.HasIndex("PokemonRef")
-                        .IsUnique();
-
-                    b.HasIndex("PrevEvolutionId");
-
-                    b.ToTable("PokemonEvolutions");
-                });
-
-            modelBuilder.Entity("PokedexMVC.Domain.Model.PokemonTyping", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PrimaryTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SecondaryTypeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PrimaryTypeId");
-
-                    b.HasIndex("SecondaryTypeId");
-
-                    b.ToTable("PokemonTyping");
                 });
 
             modelBuilder.Entity("PokedexMVC.Domain.Model.Statistic", b =>
@@ -520,6 +413,27 @@ namespace PokedexMVC.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("Statistics");
+                });
+
+            modelBuilder.Entity("PokedexMVC.Domain.Model.StatusEffect", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Effects");
                 });
 
             modelBuilder.Entity("PokedexMVC.Domain.Model.Typing", b =>
@@ -592,7 +506,7 @@ namespace PokedexMVC.Infrastructure.Migrations
 
             modelBuilder.Entity("PokedexMVC.Domain.Model.Move", b =>
                 {
-                    b.HasOne("PokedexMVC.Domain.Model.StatusEffect", "StatusEffect")
+                    b.HasOne("PokedexMVC.Domain.Model.StatusEffect", "Effect")
                         .WithMany("Moves")
                         .HasForeignKey("EffectId");
 
@@ -606,7 +520,7 @@ namespace PokedexMVC.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("StatusEffect");
+                    b.Navigation("Effect");
 
                     b.Navigation("Type");
                 });
@@ -624,48 +538,32 @@ namespace PokedexMVC.Infrastructure.Migrations
 
             modelBuilder.Entity("PokedexMVC.Domain.Model.Pokemon", b =>
                 {
-                    b.HasOne("PokedexMVC.Domain.Model.PokemonTyping", "PokemonTyping")
+                    b.HasOne("PokedexMVC.Domain.Model.Typing", "Typing")
                         .WithMany("Pokemons")
-                        .HasForeignKey("PokemonTypingId")
+                        .HasForeignKey("TypingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PokedexMVC.Domain.Model.Typing", null)
-                        .WithMany("Pokemons")
-                        .HasForeignKey("TypingId");
-
-                    b.Navigation("PokemonTyping");
+                    b.Navigation("Typing");
                 });
 
             modelBuilder.Entity("PokedexMVC.Domain.Model.PokemonAbility", b =>
                 {
-                    b.HasOne("PokedexMVC.Domain.Model.Ability", "HiddenAbility")
-                        .WithMany()
-                        .HasForeignKey("HiddenAbilityId");
+                    b.HasOne("PokedexMVC.Domain.Model.Ability", "Ability")
+                        .WithMany("PokemonAbilities")
+                        .HasForeignKey("AbilityRef")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("PokedexMVC.Domain.Model.Pokemon", "Pokemon")
-                        .WithOne("Abilities")
-                        .HasForeignKey("PokedexMVC.Domain.Model.PokemonAbility", "PokemonId")
+                        .WithMany("PokemonAbilities")
+                        .HasForeignKey("PokemonRef")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PokedexMVC.Domain.Model.Ability", "PrimaryAbility")
-                        .WithMany()
-                        .HasForeignKey("PrimaryAbilityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PokedexMVC.Domain.Model.Ability", "SecondaryAbility")
-                        .WithMany()
-                        .HasForeignKey("SecondaryAbilityId");
-
-                    b.Navigation("HiddenAbility");
+                    b.Navigation("Ability");
 
                     b.Navigation("Pokemon");
-
-                    b.Navigation("PrimaryAbility");
-
-                    b.Navigation("SecondaryAbility");
                 });
 
             modelBuilder.Entity("PokedexMVC.Domain.Model.PokemonDescription", b =>
@@ -679,46 +577,6 @@ namespace PokedexMVC.Infrastructure.Migrations
                     b.Navigation("Pokemon");
                 });
 
-            modelBuilder.Entity("PokedexMVC.Domain.Model.PokemonEvolution", b =>
-                {
-                    b.HasOne("PokedexMVC.Domain.Model.Pokemon", "NextEvolution")
-                        .WithMany()
-                        .HasForeignKey("NextEvolutionId");
-
-                    b.HasOne("PokedexMVC.Domain.Model.Pokemon", "Pokemon")
-                        .WithOne("Evolution")
-                        .HasForeignKey("PokedexMVC.Domain.Model.PokemonEvolution", "PokemonRef")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PokedexMVC.Domain.Model.Pokemon", "PrevEvolution")
-                        .WithMany()
-                        .HasForeignKey("PrevEvolutionId");
-
-                    b.Navigation("NextEvolution");
-
-                    b.Navigation("Pokemon");
-
-                    b.Navigation("PrevEvolution");
-                });
-
-            modelBuilder.Entity("PokedexMVC.Domain.Model.PokemonTyping", b =>
-                {
-                    b.HasOne("PokedexMVC.Domain.Model.Typing", "PrimaryType")
-                        .WithMany()
-                        .HasForeignKey("PrimaryTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PokedexMVC.Domain.Model.Typing", "SecondaryType")
-                        .WithMany()
-                        .HasForeignKey("SecondaryTypeId");
-
-                    b.Navigation("PrimaryType");
-
-                    b.Navigation("SecondaryType");
-                });
-
             modelBuilder.Entity("PokedexMVC.Domain.Model.Statistic", b =>
                 {
                     b.HasOne("PokedexMVC.Domain.Model.Pokemon", "Pokemon")
@@ -730,9 +588,9 @@ namespace PokedexMVC.Infrastructure.Migrations
                     b.Navigation("Pokemon");
                 });
 
-            modelBuilder.Entity("PokedexMVC.Domain.Model.StatusEffect", b =>
+            modelBuilder.Entity("PokedexMVC.Domain.Model.Ability", b =>
                 {
-                    b.Navigation("Moves");
+                    b.Navigation("PokemonAbilities");
                 });
 
             modelBuilder.Entity("PokedexMVC.Domain.Model.Moveset", b =>
@@ -742,14 +600,10 @@ namespace PokedexMVC.Infrastructure.Migrations
 
             modelBuilder.Entity("PokedexMVC.Domain.Model.Pokemon", b =>
                 {
-                    b.Navigation("Abilities")
-                        .IsRequired();
-
-                    b.Navigation("Evolution")
-                        .IsRequired();
-
                     b.Navigation("Moveset")
                         .IsRequired();
+
+                    b.Navigation("PokemonAbilities");
 
                     b.Navigation("PokemonDescription")
                         .IsRequired();
@@ -758,9 +612,9 @@ namespace PokedexMVC.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PokedexMVC.Domain.Model.PokemonTyping", b =>
+            modelBuilder.Entity("PokedexMVC.Domain.Model.StatusEffect", b =>
                 {
-                    b.Navigation("Pokemons");
+                    b.Navigation("Moves");
                 });
 
             modelBuilder.Entity("PokedexMVC.Domain.Model.Typing", b =>

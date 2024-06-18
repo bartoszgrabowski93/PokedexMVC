@@ -11,9 +11,8 @@ namespace PokedexMVC.Domain.Model
         public int Id { get; set; }
         public int PokedexNumber { get; set; }
         public string Name { get; set; } 
-        public PokemonTyping PokemonTyping { get; set; }
-        public int PokemonTypingId { get; set; }
-        public PokemonEvolution PokemonEvolution { get; set; }
+        public int TypingId { get; set; }
+        public Typing Typing { get; set; }         
         public ICollection<PokemonAbility> PokemonAbilities { get; set; }     
         public Moveset Moveset { get; set; }
         public PokemonDescription PokemonDescription { get; set; }
