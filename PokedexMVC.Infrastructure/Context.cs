@@ -38,20 +38,7 @@ namespace PokedexMVC.Infrastructure
                .HasOne(a => a.Statistic).WithOne(b => b.Pokemon)
                .HasForeignKey<Statistic>(e => e.PokemonRef);            
 
-            // Relacja Wiele-Wiele
-            builder.Entity<PokemonAbility>()
-                .HasKey(pa => new { pa.PokemonRef, pa.AbilityRef });
-
-            builder.Entity<PokemonAbility>()
-                .HasOne<Pokemon>(pa => pa.Pokemon)
-                .WithMany(p => p.PokemonAbilities)
-                .HasForeignKey(pa => pa.PokemonRef);
-
-            builder.Entity<PokemonAbility>()
-                .HasOne<Ability>(pa => pa.Ability)
-                .WithMany(a => a.PokemonAbilities)
-                .HasForeignKey(pa => pa.AbilityRef);
-
+           
 
         }
     }

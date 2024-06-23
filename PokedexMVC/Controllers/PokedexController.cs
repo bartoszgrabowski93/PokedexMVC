@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PokedexMVC.Application.Services;
 
 
 
@@ -37,12 +38,12 @@ namespace PokedexMVC.Web.Controllers
         }
 
         // POST: PokedexController/Create
-        /*[HttpPost]        
+        [HttpPost]        
          public IActionResult AddPokemon(PokemonModel model)
         {
-            var id = pokemonService.AddPokemon(model);
+            var id = PokemonService.AddPokemon(model);
             return View();
-        } */
+        } 
         [HttpGet]
         public IActionResult AddPokemonDescription(int pokemonId)
         {

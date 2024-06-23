@@ -8,5 +8,11 @@ namespace PokedexMVC.Application.Services
 {
     public class PokemonService
     {
+        public int AddPokemon(PokemonModel pokemonModel)
+        {
+            var id;
+            return id;
+
+        }
     }
 }

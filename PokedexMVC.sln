@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.9.34616.47
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokedexMVC.Web", "PokedexMVC\PokedexMVC.Web.csproj", "{97FDCB86-E645-4FBF-A229-065CC3CE1557}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E3D8E2B5-21D2-4D74-906D-46AC3589EF6C} = {E3D8E2B5-21D2-4D74-906D-46AC3589EF6C}
+		{ED8AF80C-A74B-44A0-B235-2A1AA9C7D0C0} = {ED8AF80C-A74B-44A0-B235-2A1AA9C7D0C0}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{5DF0DD4E-C50B-44FB-990E-7F601C626CAD}"
 EndProject
@@ -17,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokedexMVC.Application", "PokedexMVC.Application\PokedexMVC.Application.csproj", "{ED8AF80C-A74B-44A0-B235-2A1AA9C7D0C0}"
 	ProjectSection(ProjectDependencies) = postProject
-		{97FDCB86-E645-4FBF-A229-065CC3CE1557} = {97FDCB86-E645-4FBF-A229-065CC3CE1557}
+		{323D19E0-6366-45C1-A2A4-76DC0E2B8CE0} = {323D19E0-6366-45C1-A2A4-76DC0E2B8CE0}
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokedexMVC.Domain", "PokedexMVC.Domain\PokedexMVC.Domain.csproj", "{323D19E0-6366-45C1-A2A4-76DC0E2B8CE0}"

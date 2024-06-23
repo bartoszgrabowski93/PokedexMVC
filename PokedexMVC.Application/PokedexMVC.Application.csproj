@@ -6,4 +6,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Viewmodels\Ability\" />
+    <Folder Include="Viewmodels\Move\" />
+    <Folder Include="Viewmodels\Type\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PokedexMVC.Domain\PokedexMVC.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
