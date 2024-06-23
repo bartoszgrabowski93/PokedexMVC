@@ -6,7 +6,26 @@ namespace PokedexMVC.Web.Controllers
     {
         public IActionResult Index()
         {
+            var list = moveService.GetAllMovesToList();
+            return View(list);
+        }
+
+        public IActionResult Details()
+        {
+            var details = moveService.GetMoveDetails();
+            return View(details);
+        }
+
+        [HttpGet]
+        public IActionResult AddMove()
+        {
             return View();
+        }
+        [HttpPost]
+        public IActionResult AddMove(moveModel model)
+        {
+            var moveid = moveService.AddMove(model);
+            return View(moveid);
         }
     }
 }
