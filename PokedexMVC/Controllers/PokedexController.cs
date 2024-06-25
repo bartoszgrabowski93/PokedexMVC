@@ -49,18 +49,12 @@ namespace PokedexMVC.Web.Controllers
         {
             return View();
         }
-        /* [HttpPost]
+        [HttpPost]
         public IActionResult AddPokemonDescription(PokemonDescriptionModel model)
         {
             var id = pokemonService.AddPokemonDescription(model);
             return View();
-        }
-
-        public IActionResult ViewPokemonDetails(int pokemonId)
-        {
-            var pokemonDetails = pokemonService.GetPokemonDetailsById(pokemondId);
-            return View(pokemonDetails);
-        } */
+        }        
 
     }
 }
