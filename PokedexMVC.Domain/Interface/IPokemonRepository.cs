@@ -9,11 +9,9 @@ namespace PokedexMVC.Domain.Interface
 {
     public interface IPokemonRepository
     {
-
         int AddPokemon(Pokemon pokemon);
         void DeletePokemon(int pokemonId);
-        Pokemon GetPokemonById(int pokemonId);
-        Pokemon GetPokemonByPokdexNumber(int pokemonNumber);
+        IQueryable<Pokemon> GetAllPokemons();
         
        
     }

@@ -9,7 +9,7 @@ namespace PokedexMVC.Application.Interfaces
 {
     public interface IPokemonService
     {
-        ListGetAllPokemonVm GetAllPokemon();
+        ListGetAllPokemonVm GetAllPokemonForList();
         int AddPokemon(NewPokemonVm pokemon);
         PokemonDetailsVm GetPokemonDetails(int pokemonId);
     }

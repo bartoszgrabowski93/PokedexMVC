@@ -8,5 +8,10 @@ namespace PokedexMVC.Application.Viewmodels.Pokemon
 {
     public class GetAllPokemonVm
     {
+        public int Id { get; set; }
+        // public byte[] Sprite { get; set; }
+        public int PokemonNumber { get; set; }
+        public string Name { get; set; }
+
     }
 }
