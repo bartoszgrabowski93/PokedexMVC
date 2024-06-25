@@ -1,6 +1,7 @@
 ﻿using PokedexMVC.Application.Interfaces;
 using PokedexMVC.Application.Viewmodels.Pokemon;
 using PokedexMVC.Domain.Interface;
+using PokedexMVC.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,13 @@ namespace PokedexMVC.Application.Services
         private readonly IPokemonRepository _pokemonRepo;
         public int AddPokemon(NewPokemonVm pokemon)
         {
-            throw new NotImplementedException();
+            var newPokemon = new Pokemon();
+            newPokemon.Id = pokemon.Id;
+            newPokemon.PokedexNumber = pokemon.PokemonNumber;
+            newPokemon.Name = pokemon.Name;
+            _pokemonRepo.AddPokemon(newPokemon);
+            return newPokemon.Id;                
+
         }
 
         public ListGetAllPokemonVm GetAllPokemonForList()
@@ -38,7 +45,28 @@ namespace PokedexMVC.Application.Services
 
         public PokemonDetailsVm GetPokemonDetails(int pokemonId)
         {
-            throw new NotImplementedException();
+            var pokemon = _pokemonRepo.GetPokemon(pokemonId);
+            var pokemonVm = new PokemonDetailsVm();
+            pokemonVm.Id = pokemon.Id;
+            pokemonVm.PokemonNumber = pokemon.PokedexNumber;
+            pokemonVm.Name = pokemon.Name;
+            pokemonVm.PrimaryType = pokemon.Typing;
+            pokemonVm.Sprite = pokemon.Sprite;
+            var pokemonDes = pokemon.PokemonDescription;
+            pokemonVm.Description = pokemonDes.Description;
+            pokemonVm.Height = pokemonDes.Height;
+            pokemonVm.Weight = pokemonDes.Weight;
+            pokemonVm.Category = pokemonDes.Category;
+            var pokemonStats = pokemon.Statistic;
+            pokemonVm.Health = pokemonStats.Health;
+            pokemonVm.Attack = pokemonStats.Attack;
+            pokemonVm.SpecialAttack = pokemonStats.SpecialAttack;
+            pokemonVm.Defense = pokemonStats.Defense;
+            pokemonVm.SpecialDefense = pokemonStats.SpecialDefense;
+            pokemonVm.Speed = pokemonStats.Speed;
+            return pokemonVm;   
+                        
         }
+
     }
 }
