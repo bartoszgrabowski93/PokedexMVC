@@ -14,7 +14,7 @@ namespace PokedexMVC.Domain.Model
         public int Defense { get; set; }
         public int SpecialAttack { get; set; }
         public int SpecialDefense { get; set; }
-        public int Spped { get; set; }
+        public int Speed { get; set; }
         public int PokemonRef { get; set; }
         public Pokemon Pokemon { get; set; }
 
