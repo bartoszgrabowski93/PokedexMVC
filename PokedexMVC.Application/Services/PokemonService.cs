@@ -63,7 +63,7 @@ namespace PokedexMVC.Application.Services
             pokemonVm.SpecialAttack = pokemonStats.SpecialAttack;
             pokemonVm.Defense = pokemonStats.Defense;
             pokemonVm.SpecialDefense = pokemonStats.SpecialDefense;
-            pokemonVm.Speed = pokemonStats.Speed;
+            pokemonVm.Speed = pokemonStats.Speed;            
             return pokemonVm;   
                         
         }

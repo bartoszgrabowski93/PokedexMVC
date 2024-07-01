@@ -19,15 +19,15 @@ namespace PokedexMVC.Web.Controllers
             // serwis przygotowuje dane 
             // serwis zwraca dane do kontrollera w odpowiednim formacie
 
-            /* var model = pokemonService.GetAllPokemonForList();
-            return View(model); */
-            return View();
+             var model = pokemonService.GetAllPokemonForList();
+            return View(model);            
         }
 
         // GET: PokedexController/Details/5
         public IActionResult Details(int id)
         {
-            return View();
+            var model = pokemonService.GetPokemonDetails(id);
+            return View(model);
         }
 
         // GET: PokedexController/Create
