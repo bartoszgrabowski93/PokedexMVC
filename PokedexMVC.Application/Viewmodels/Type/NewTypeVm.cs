@@ -1,5 +1,4 @@
-﻿using PokedexMVC.Domain.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace PokedexMVC.Application.Viewmodels.Type
 {
-    public class DetailedTypeVm
+    public class NewTypeVm
     {
+        public int Id { get; set; }       
         public string Name { get; set; }
-        
-        public List<Pokemon> PokemonsInType { get; set; }
-        public List<Move> Moves { get; set; }
     }
 }

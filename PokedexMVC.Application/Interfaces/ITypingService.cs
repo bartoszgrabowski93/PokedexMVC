@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PokedexMVC.Application.Viewmodels.Type;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,8 @@ namespace PokedexMVC.Application.Interfaces
     {
         ListGetAllTypesVm GetAllTypes();
         DetailedTypeVm GetTypeDetails(int typeId);
+        void SetPokemonDualType(int pokemonId, int primaryTypeId, int secondaryTypeId);
+        void SetPokemonType(int pokemonId, int typeId);
+        int AddType(NewTypeVm model);
     }
 }

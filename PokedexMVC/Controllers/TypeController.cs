@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PokedexMVC.Application.Services;
 
 namespace PokedexMVC.Web.Controllers
 {
@@ -15,7 +16,17 @@ namespace PokedexMVC.Web.Controllers
             var model = typingService.GetTypeDetails(typeId);
             return View(model);
         }
-
+        [HttpGet]
+        public IActionResult AddType() 
+        {
+            return View(); 
+        }
+        [HttpPost]
+        public IActionResult AddType(TypingModel model)
+        {
+            var typeId = TypingService.AddType(model);
+            return View(typeId);
+        }
         [HttpGet]
         public IActionResult SetPokemonDualType()
         {
