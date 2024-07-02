@@ -12,6 +12,7 @@ namespace PokedexMVC.Domain.Model
         public string Name { get; set; }
         public virtual ICollection<Move> Moves { get; set;}
         public virtual ICollection<Pokemon> Pokemons { get; set;}
+        public TypeCharacteristics TypeCharacteristics { get; set; }    
 
     }
 }

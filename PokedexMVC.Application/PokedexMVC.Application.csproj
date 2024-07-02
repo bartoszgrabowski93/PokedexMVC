@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Viewmodels\Ability\" />
     <Folder Include="Viewmodels\Move\" />
-    <Folder Include="Viewmodels\Type\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -18,6 +18,5 @@ namespace PokedexMVC.Domain.Model
         public int PokemonRef { get; set; }
         public Pokemon Pokemon { get; set; }
 
-
     }
 }

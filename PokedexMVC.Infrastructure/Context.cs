@@ -14,6 +14,7 @@ namespace PokedexMVC.Infrastructure
         public DbSet<PokemonDescription> PokemonDescriptions { get; set; }              
         public DbSet<Statistic> Statistics { get; set; }
         public DbSet<StatusEffect> Effects { get; set; }
+        public DbSet<TypeCharacteristics> TypeCharacteristics { get; set; }
         public DbSet<Typing> Typings { get; set; }
 
         public Context(DbContextOptions options) : base(options)
@@ -36,9 +37,11 @@ namespace PokedexMVC.Infrastructure
 
             builder.Entity<Pokemon>()
                .HasOne(a => a.Statistic).WithOne(b => b.Pokemon)
-               .HasForeignKey<Statistic>(e => e.PokemonRef);            
+               .HasForeignKey<Statistic>(e => e.PokemonRef);
 
-           
+            builder.Entity<Typing>()
+                .HasOne(a => a.TypeCharacteristics).WithOne(b => b.Type)
+                .HasForeignKey<TypeCharacteristics>(e => e.TypeRef);           
 
         }
     }
