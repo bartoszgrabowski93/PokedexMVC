@@ -1,4 +1,6 @@
-﻿using PokedexMVC.Domain.Model;
+﻿using AutoMapper;
+using PokedexMVC.Application.Mapping;
+using PokedexMVC.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PokedexMVC.Application.Viewmodels.Pokemon
 {
-    public class PokemonDetailsVm
+    public class PokemonDetailsVm : IMapFrom<PokedexMVC.Domain.Model.Pokemon>
     {
         public int Id { get; set; }
         public byte[] Sprite { get; set; }
@@ -25,6 +27,12 @@ namespace PokedexMVC.Application.Viewmodels.Pokemon
         public int SpecialAttack { get; set; }
         public int SpecialDefense { get; set; }
         public int Speed { get; set; }
+
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<PokedexMVC.Domain.Model.Pokemon, PokemonDetailsVm>()
+                .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
+        }
 
     }
 }
