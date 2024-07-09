@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PokedexMVC.Application.Viewmodels.Pokemon
 {
-    public class PokemonDetailsVm : IMapFrom<PokedexMVC.Domain.Model.Pokemon>
+    public class PokemonDetailsVm : IMapFrom<PokedexMVC.Domain.Model.Pokemon>, IMapFrom<PokedexMVC.Domain.Model.PokemonDescription>, IMapFrom<PokedexMVC.Domain.Model.Statistic>
     {
         public int Id { get; set; }
         public byte[] Sprite { get; set; }
@@ -31,6 +31,10 @@ namespace PokedexMVC.Application.Viewmodels.Pokemon
         public void Mapping(Profile profile)
         {
             profile.CreateMap<PokedexMVC.Domain.Model.Pokemon, PokemonDetailsVm>()
+                .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
+            profile.CreateMap<PokedexMVC.Domain.Model.PokemonDescription, PokemonDetailsVm>()
+                .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
+            profile.CreateMap<PokedexMVC.Domain.Model.Statistic, PokemonDetailsVm>()
                 .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
         }
 
