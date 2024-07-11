@@ -1,4 +1,5 @@
-﻿using PokedexMVC.Application.Interfaces;
+﻿using AutoMapper;
+using PokedexMVC.Application.Interfaces;
 using PokedexMVC.Application.Viewmodels.Pokemon;
 using PokedexMVC.Domain.Interface;
 using PokedexMVC.Domain.Model;
@@ -13,6 +14,13 @@ namespace PokedexMVC.Application.Services
     public class PokemonService : IPokemonService
     {
         private readonly IPokemonRepository _pokemonRepo;
+        private readonly IMapper _mapper;
+
+        public PokemonService(IPokemonRepository pokemonRepo, IMapper mapper)
+        {
+            _pokemonRepo = pokemonRepo;
+            _mapper = mapper;
+        }
         public int AddPokemon(NewPokemonVm pokemon)
         {
             var newPokemon = new Pokemon();

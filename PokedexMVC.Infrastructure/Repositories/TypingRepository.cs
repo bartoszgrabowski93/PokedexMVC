@@ -37,7 +37,7 @@ namespace PokedexMVC.Infrastructure.Repositories
 
         public IQueryable<Typing> GetAllTypings()
         {
-            var typings = _context.Typings;
+            IQueryable<Typing> typings = _context.Typings;
             return typings; 
         }
     }
