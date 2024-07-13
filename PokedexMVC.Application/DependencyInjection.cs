@@ -1,10 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿
+using Microsoft.Extensions.DependencyInjection;
 using PokedexMVC.Application.Interfaces;
 using PokedexMVC.Application.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,9 +17,7 @@ namespace PokedexMVC.Application
         {
             services.AddTransient<IPokemonService, PokemonService>();
             services.AddTransient<ITypingService, TypingService>();
-            // services.AddAutoMapper(System.Reflection.Assembly.GetExecutingAssembly());
-
-          
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());          
             return services;
         }
     }
