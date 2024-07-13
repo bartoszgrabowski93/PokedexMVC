@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using PokedexMVC.Application;
+using PokedexMVC.Domain.Interface;
 using PokedexMVC.Infrastructure;
+using PokedexMVC.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +16,8 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<Context>();
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddApplication();
+builder.Services.AddInfrastructure();
 // builder.Services.AddTransient<>();
 
 var app = builder.Build();
