@@ -14,7 +14,7 @@ namespace PokedexMVC.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             services.AddTransient<IPokemonRepository, PokemonRepository>();
-            services.AddTransient<ITypingRepository, TypingRepository>();            
+            services.AddTransient<ITypingRepository, TypingRepository>();             
             return services;
         }
     }

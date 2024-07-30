@@ -13,8 +13,7 @@ namespace PokedexMVC.Domain.Interface
         void DeletePokemon(int pokemonId);
         IQueryable<Pokemon> GetAllPokemons();
         Pokemon GetPokemon(int pokemonId);
-
-        
+            
        
     }
 }

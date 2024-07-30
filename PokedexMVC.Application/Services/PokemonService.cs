@@ -58,20 +58,9 @@ namespace PokedexMVC.Application.Services
             pokemonVm.Id = pokemon.Id;
             pokemonVm.PokemonNumber = pokemon.PokedexNumber;
             pokemonVm.Name = pokemon.Name;
-            pokemonVm.PrimaryType = pokemon.Typing;
-            pokemonVm.Sprite = pokemon.Sprite;
-            var pokemonDes = pokemon.PokemonDescription;
-            pokemonVm.Description = pokemonDes.Description;
-            pokemonVm.Height = pokemonDes.Height;
-            pokemonVm.Weight = pokemonDes.Weight;
-            pokemonVm.Category = pokemonDes.Category;
-            var pokemonStats = pokemon.Statistic;
-            pokemonVm.Health = pokemonStats.Health;
-            pokemonVm.Attack = pokemonStats.Attack;
-            pokemonVm.SpecialAttack = pokemonStats.SpecialAttack;
-            pokemonVm.Defense = pokemonStats.Defense;
-            pokemonVm.SpecialDefense = pokemonStats.SpecialDefense;
-            pokemonVm.Speed = pokemonStats.Speed;            
+            pokemonVm.Typing = pokemon.Typing;
+            // pokemonVm.Sprite = pokemon.Sprite;
+                      
             return pokemonVm;   
                         
         }
