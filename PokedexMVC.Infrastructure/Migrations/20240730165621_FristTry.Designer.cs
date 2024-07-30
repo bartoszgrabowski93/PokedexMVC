@@ -12,8 +12,8 @@ using PokedexMVC.Infrastructure;
 namespace PokedexMVC.Infrastructure.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20240618195312_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240730165621_FristTry")]
+    partial class FristTry
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -361,6 +361,10 @@ namespace PokedexMVC.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Height")
                         .HasColumnType("int");
 
@@ -404,7 +408,7 @@ namespace PokedexMVC.Infrastructure.Migrations
                     b.Property<int>("SpecialDefense")
                         .HasColumnType("int");
 
-                    b.Property<int>("Spped")
+                    b.Property<int>("Speed")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -434,6 +438,25 @@ namespace PokedexMVC.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Effects");
+                });
+
+            modelBuilder.Entity("PokedexMVC.Domain.Model.TypeCharacteristics", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("TypeRef")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TypeRef")
+                        .IsUnique();
+
+                    b.ToTable("TypeCharacteristics");
                 });
 
             modelBuilder.Entity("PokedexMVC.Domain.Model.Typing", b =>
@@ -588,6 +611,17 @@ namespace PokedexMVC.Infrastructure.Migrations
                     b.Navigation("Pokemon");
                 });
 
+            modelBuilder.Entity("PokedexMVC.Domain.Model.TypeCharacteristics", b =>
+                {
+                    b.HasOne("PokedexMVC.Domain.Model.Typing", "Type")
+                        .WithOne("TypeCharacteristics")
+                        .HasForeignKey("PokedexMVC.Domain.Model.TypeCharacteristics", "TypeRef")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Type");
+                });
+
             modelBuilder.Entity("PokedexMVC.Domain.Model.Ability", b =>
                 {
                     b.Navigation("PokemonAbilities");
@@ -622,6 +656,9 @@ namespace PokedexMVC.Infrastructure.Migrations
                     b.Navigation("Moves");
 
                     b.Navigation("Pokemons");
+
+                    b.Navigation("TypeCharacteristics")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

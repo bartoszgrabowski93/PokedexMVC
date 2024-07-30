@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PokedexMVC.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class FristTry : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -206,7 +206,7 @@ namespace PokedexMVC.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PokedexNumber = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TypingId = table.Column<int>(type: "int", nullable: true)
+                    TypingId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -214,6 +214,25 @@ namespace PokedexMVC.Infrastructure.Migrations
                     table.ForeignKey(
                         name: "FK_Pokemons_Typings_TypingId",
                         column: x => x.TypingId,
+                        principalTable: "Typings",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TypeCharacteristics",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TypeRef = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TypeCharacteristics", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TypeCharacteristics_Typings_TypeRef",
+                        column: x => x.TypeRef,
                         principalTable: "Typings",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -268,6 +287,7 @@ namespace PokedexMVC.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Height = table.Column<int>(type: "int", nullable: false),
                     Weight = table.Column<int>(type: "int", nullable: false),
                     Category = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -295,7 +315,7 @@ namespace PokedexMVC.Infrastructure.Migrations
                     Defense = table.Column<int>(type: "int", nullable: false),
                     SpecialAttack = table.Column<int>(type: "int", nullable: false),
                     SpecialDefense = table.Column<int>(type: "int", nullable: false),
-                    Spped = table.Column<int>(type: "int", nullable: false),
+                    Speed = table.Column<int>(type: "int", nullable: false),
                     PokemonRef = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -424,6 +444,12 @@ namespace PokedexMVC.Infrastructure.Migrations
                 table: "Statistics",
                 column: "PokemonRef",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TypeCharacteristics_TypeRef",
+                table: "TypeCharacteristics",
+                column: "TypeRef",
+                unique: true);
         }
 
         /// <inheritdoc />
@@ -455,6 +481,9 @@ namespace PokedexMVC.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Statistics");
+
+            migrationBuilder.DropTable(
+                name: "TypeCharacteristics");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -50,6 +50,7 @@ namespace PokedexMVC.Infrastructure.Repositories
         }
 
         public IQueryable<Pokemon> GetAllPokemons()
+        
         {
             IQueryable<Pokemon> results = _context.Pokemons;
             return results;
