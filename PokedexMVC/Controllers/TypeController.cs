@@ -1,21 +1,29 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PokedexMVC.Application.Interfaces;
 using PokedexMVC.Application.Services;
 
 namespace PokedexMVC.Web.Controllers
 {
     public class TypeController : Controller
     {
+        private readonly ITypingService _typingService;
+        public TypeController(ITypingService typingService)
+        {
+            _typingService = typingService;
+        }
         public IActionResult Index()
         {
-            var model = typingService.GetAllTypes();
+            var model = _typingService.GetAllTypes();
             return View(model);
         }
 
         public IActionResult Details(int typeId)
         {
-            var model = typingService.GetTypeDetails(typeId);
+            var model = _typingService.GetTypeDetails(typeId);
             return View(model);
         }
+
+        /*
         [HttpGet]
         public IActionResult AddType() 
         {
@@ -35,7 +43,7 @@ namespace PokedexMVC.Web.Controllers
         [HttpPost]
         public IActionResult SetPokemonDualType(int pokemonId, int primaryTypeId, int secondaryTypeId)
         {
-            var model = typingService.SetPokemonDualTyping(pokemonId, primaryTypeId, secondaryTypeId);
+            var model = _typingService.SetPokemonDualTyping(pokemonId, primaryTypeId, secondaryTypeId);
             return View(model);
         }
 
@@ -50,5 +58,6 @@ namespace PokedexMVC.Web.Controllers
             var model = typingService.SetPokemonType(pokemonId, typeId);
             return View(model);
         }
+        */
     }
 }

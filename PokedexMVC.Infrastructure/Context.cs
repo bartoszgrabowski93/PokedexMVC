@@ -41,7 +41,21 @@ namespace PokedexMVC.Infrastructure
 
             builder.Entity<Typing>()
                 .HasOne(a => a.TypeCharacteristics).WithOne(b => b.Type)
-                .HasForeignKey<TypeCharacteristics>(e => e.TypeRef);           
+                .HasForeignKey<TypeCharacteristics>(e => e.TypeRef);
+
+            // Relacja Wiele-Wiele
+            builder.Entity<PokemonAbility>()
+                .HasKey(pa => new { pa.PokemonRef, pa.AbilityRef });
+
+            builder.Entity<PokemonAbility>()
+                .HasOne<Ability>(pa => pa.Ability)
+                .WithMany(a => a.PokemonAbilities)
+                .HasForeignKey(pa => pa.AbilityRef);
+
+            builder.Entity<PokemonAbility>()
+                .HasOne<Pokemon>(pa => pa.Pokemon)
+                .WithMany(p => p.PokemonAbilities)
+                .HasForeignKey(pa => pa.PokemonRef);
 
         }
     }

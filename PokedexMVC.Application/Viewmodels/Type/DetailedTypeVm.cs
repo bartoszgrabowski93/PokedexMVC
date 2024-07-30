@@ -14,7 +14,7 @@ namespace PokedexMVC.Application.Viewmodels.Type
         public int Id { get; set; }
         public string Name { get; set; }        
         public List<PokedexMVC.Domain.Model.Pokemon> PokemonsInType { get; set; }
-        public List<Move> Moves { get; set; }
+        public List<PokedexMVC.Domain.Model.Move> Moves { get; set; }
 
         public void Mapping(Profile profile) 
         {

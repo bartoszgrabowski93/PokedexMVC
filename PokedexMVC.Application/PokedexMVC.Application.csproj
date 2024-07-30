@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Viewmodels\Ability\" />
-    <Folder Include="Viewmodels\Move\" />
   </ItemGroup>
 
   <ItemGroup>
