@@ -19,7 +19,7 @@ namespace PokedexMVC.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {            
-             var model = _pokemonService.GetAllPokemonForList();
+             var model = _pokemonService.GetAllPokemonForList(10, 1, "");
             return View(model);            
         }
         [HttpPost]

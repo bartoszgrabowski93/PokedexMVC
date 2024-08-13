@@ -9,6 +9,12 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<form asp-action="Index" asp-controller="Pokedex" method="post">
+    <div class="row">
+        <input type="text" asp-for="SearchString" name="searchString" id="searchString" />
+        <input type="submit" value="Wyszukaj" />
+    </div>
+    <div class="row">
 <table class="table">
     <thead>
         <tr>
@@ -46,3 +52,31 @@
 }
     </tbody>
 </table>
+    </div>
+    <div class="row">
+        <table>
+            <tr>
+                @for(int i=1; i < Math.Ceiling(Model.Count / (double)Model.PageSize); i++)
+                {
+                    <td>
+                        @if(i != Model.CurrentPage)
+                        {
+                            <a href="javascript:PagerClick(@i)">@i</a>
+                        }
+                        else
+                        {
+                            <span>@i</span>
+                        }
+                    </td>
+                }
+            </tr>
+        </table>
+    </div>
+</form>
+
+
+                @section Scripts
+                {
+
+
+                }

@@ -35,13 +35,15 @@ namespace PokedexMVC.Application.Services
 
         public ListGetAllPokemonVm GetAllPokemonForList(int pageSize, int pageNumber, string searchString)
         {
-            var pokemons = _pokemonRepo.GetAllPokemons().ProjectTo<GetAllPokemonVm>(_mapper.ConfigurationProvider).ToList();
+            var pokemons = _pokemonRepo.GetAllPokemons().Where(p => p.Name.StartsWith(searchString))
+                .ProjectTo<GetAllPokemonVm>(_mapper.ConfigurationProvider).ToList();
+            var pokemonsToShow = pokemons.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
             var pokemonList = new ListGetAllPokemonVm()
             {
                 PageSize = pageSize,
                 CurrentPage = pageNumber,
                 SearchString = searchString,
-                Pokemons = pokemons,
+                Pokemons = pokemonsToShow,
                 Count = pokemons.Count
             };
             return pokemonList;            
