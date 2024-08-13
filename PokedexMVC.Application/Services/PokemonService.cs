@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using PokedexMVC.Application.Interfaces;
 using PokedexMVC.Application.Viewmodels.Pokemon;
 using PokedexMVC.Domain.Interface;
@@ -32,23 +33,18 @@ namespace PokedexMVC.Application.Services
 
         }
 
-        public ListGetAllPokemonVm GetAllPokemonForList()
+        public ListGetAllPokemonVm GetAllPokemonForList(int pageSize, int pageNumber, string searchString)
         {
-            var pokemons = _pokemonRepo.GetAllPokemons();
-            ListGetAllPokemonVm result = new ListGetAllPokemonVm();
-            result.Pokemons = new List<GetAllPokemonVm>();
-            foreach (var pokemon in pokemons)
+            var pokemons = _pokemonRepo.GetAllPokemons().ProjectTo<GetAllPokemonVm>(_mapper.ConfigurationProvider).ToList();
+            var pokemonList = new ListGetAllPokemonVm()
             {
-                var pokemonVm = new GetAllPokemonVm()
-                { 
-                    Id = pokemon.Id,
-                    Name = pokemon.Name,
-                    PokemonNumber = pokemon.PokedexNumber
-                };
-                result.Pokemons.Add(pokemonVm);
-            }
-            result.Count = result.Pokemons.Count;
-            return result;
+                PageSize = pageSize,
+                CurrentPage = pageNumber,
+                SearchString = searchString,
+                Pokemons = pokemons,
+                Count = pokemons.Count
+            };
+            return pokemonList;            
         }
 
         public PokemonDetailsVm GetPokemonDetails(int pokemonId)

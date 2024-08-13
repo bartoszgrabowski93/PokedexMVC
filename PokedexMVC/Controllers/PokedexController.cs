@@ -16,18 +16,17 @@ namespace PokedexMVC.Web.Controllers
             _pokemonService = pokemonService;
         }
         // GET: PokedexController
+        [HttpGet]
         public IActionResult Index()
-        {
-            // utworzyć widok dla tej akcji
-            // tabela z pokemonami
-            // filtrowanie pokemonów
-            // przygotowanie danych 
-            // przekazanie filtrów do serwisu
-            // serwis przygotowuje dane 
-            // serwis zwraca dane do kontrollera w odpowiednim formacie
-
+        {            
              var model = _pokemonService.GetAllPokemonForList();
             return View(model);            
+        }
+        [HttpPost]
+        public IActionResult Index(int pageSize, int pageNumber, string searchString)
+        {
+            var model = _pokemonService.GetAllPokemonForList(pageSize, pageNumber, searchString);
+            return View(model);
         }
 
         // GET: PokedexController/Details/5
