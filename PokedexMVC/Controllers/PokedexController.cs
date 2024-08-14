@@ -23,9 +23,17 @@ namespace PokedexMVC.Web.Controllers
             return View(model);            
         }
         [HttpPost]
-        public IActionResult Index(int pageSize, int pageNumber, string searchString)
+        public IActionResult Index(int pageSize, int? pageNumber, string searchString)
         {
-            var model = _pokemonService.GetAllPokemonForList(pageSize, pageNumber, searchString);
+            if (!pageNumber.HasValue)
+            {
+                pageNumber = 1;
+            }
+            if (searchString is null)
+            {
+                searchString = String.Empty;
+            }
+            var model = _pokemonService.GetAllPokemonForList(pageSize, pageNumber.Value, searchString);
             return View(model);
         }
 
