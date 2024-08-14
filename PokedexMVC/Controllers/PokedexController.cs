@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PokedexMVC.Application.Interfaces;
 using PokedexMVC.Application.Services;
+using PokedexMVC.Application.Viewmodels.Pokemon;
 
 
 
@@ -48,17 +49,19 @@ namespace PokedexMVC.Web.Controllers
         [HttpGet]
         public IActionResult AddPokemon()
         {
-            return View();
+            return View(new NewPokemonVm());
         }
 
         // POST: PokedexController/Create
-        /*
+        
         [HttpPost]        
-         public IActionResult AddPokemon(PokemonModel model)
+         public IActionResult AddPokemon(NewPokemonVm model)
         {
             var id = _pokemonService.AddPokemon(model);
             return View();
         } 
+        
+        /*
         [HttpGet]
         public IActionResult AddPokemonDescription(int pokemonId)
         {
