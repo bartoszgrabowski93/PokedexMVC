@@ -12,7 +12,7 @@
 <form asp-action="Index" asp-controller="Pokedex" method="post">
     <div class="row">
         <input type="text" asp-for="SearchString" name="searchString" id="searchString" />
-        <input type="submit" value="Wyszukaj" />
+        <input type="submit" value="Find" />
     </div>
     <div class="row">
 <table class="table">
@@ -79,16 +79,13 @@
         <input type="hidden" name="pageSize" id="pageSize" value="10" />
     </div>
 </form>
-
-
-                @section Scripts
-                {
-                    <script type="text/javascript">
-                        funtion PagerClick(index)
-                        {
-    document.getElementById("pageNumber").value = index;
-    document.forms[0].submit();
-                        }
-                            
-                    </script>
-                }
+@section Scripts
+{
+ <script type="text/javascript">
+     function PagerClick(index)
+        {
+            document.getElementById("pageNumber").value = index;
+            document.forms[0].submit();    
+        }                            
+  </script>
+ }
