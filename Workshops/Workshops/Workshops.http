@@ -1,6 +1,0 @@
-@Workshops_HostAddress = http://localhost:5141
-
-GET {{Workshops_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
