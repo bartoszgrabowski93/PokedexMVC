@@ -22,7 +22,7 @@
                 Id
             </th>
             <th>
-                International Pokedex Number
+                Pokedex Number
             </th>
             <th>
                 Name
@@ -40,7 +40,7 @@
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PokemonNumber)
+                @Html.DisplayFor(modelItem => item.PokedexNumber)
             </td>
             <td>
                  @Html.DisplayFor(modelItem => item.Name)
@@ -60,7 +60,7 @@
     <div class="row">
         <table>
             <tr>
-                @for(int i=1; i < Math.Ceiling(Model.Count / (double)Model.PageSize); i++)
+                @for(int i=1; i <= Math.Ceiling(Model.Count / (double)Model.PageSize); i++)
                 {
                     <td>
                         @if(i != Model.CurrentPage)
@@ -76,7 +76,7 @@
             </tr>
         </table>
         <input type="hidden" name="pageNumber" id="pageNumber" />
-        <input type="hidden" name="pageSize" id="pageSize" value="10" />
+        <input type="hidden" name="pageSize" id="pageSize" value="3" />
     </div>
 </form>
 @section Scripts
