@@ -206,7 +206,7 @@ namespace PokedexMVC.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PokedexNumber = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TypingId = table.Column<int>(type: "int", nullable: false)
+                    TypingId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {

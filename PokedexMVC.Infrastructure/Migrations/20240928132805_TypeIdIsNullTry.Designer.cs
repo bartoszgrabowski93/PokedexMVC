@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PokedexMVC.Infrastructure;
 
@@ -11,9 +12,11 @@ using PokedexMVC.Infrastructure;
 namespace PokedexMVC.Infrastructure.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20240928132805_TypeIdIsNullTry")]
+    partial class TypeIdIsNullTry
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -321,7 +324,7 @@ namespace PokedexMVC.Infrastructure.Migrations
                     b.Property<int>("PokedexNumber")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TypingId")
+                    b.Property<int>("TypingId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -560,7 +563,9 @@ namespace PokedexMVC.Infrastructure.Migrations
                 {
                     b.HasOne("PokedexMVC.Domain.Model.Typing", "Typing")
                         .WithMany("Pokemons")
-                        .HasForeignKey("TypingId");
+                        .HasForeignKey("TypingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Typing");
                 });
