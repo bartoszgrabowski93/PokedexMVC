@@ -1,6 +1,8 @@
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PokedexMVC.Application;
+using PokedexMVC.Application.Viewmodels.Pokemon;
 using PokedexMVC.Domain.Interface;
 using PokedexMVC.Infrastructure;
 using PokedexMVC.Infrastructure.Repositories;
@@ -15,7 +17,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<Context>();
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddFluentValidation();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure();
 

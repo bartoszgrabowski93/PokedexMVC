@@ -1,7 +1,9 @@
 ﻿
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using PokedexMVC.Application.Interfaces;
 using PokedexMVC.Application.Services;
+using PokedexMVC.Application.Viewmodels.Pokemon;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +19,7 @@ namespace PokedexMVC.Application
         {
             services.AddTransient<IPokemonService, PokemonService>();
             services.AddTransient<ITypingService, TypingService>();
+            services.AddTransient<IValidator<NewPokemonVm>, NewPokemonValidaton>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());          
             return services;
         }

@@ -58,7 +58,7 @@ namespace PokedexMVC.Web.Controllers
          public IActionResult AddPokemon(NewPokemonVm model)
         {
             var id = _pokemonService.AddPokemon(model);
-            return View();
+            return RedirectToAction("Index");
         } 
         
         /*
