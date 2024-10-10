@@ -26,7 +26,7 @@ namespace PokedexMVC.Application.Services
         {
             var newPokemon = new Pokemon();
             newPokemon.Id = pokemon.Id;
-            newPokemon.PokedexNumber = pokemon.PokemonNumber;
+            newPokemon.PokedexNumber = pokemon.PokedexNumber;
             newPokemon.Name = pokemon.Name;
             _pokemonRepo.AddPokemon(newPokemon);
             return newPokemon.Id;                
@@ -49,9 +49,22 @@ namespace PokedexMVC.Application.Services
             return pokemonList;            
         }
 
+        public NewPokemonVm GetPokemonForEdit(int pokemonId)
+        {
+            var pokemon = _pokemonRepo.GetPokemonById(pokemonId);
+            var pokemonVm = _mapper.Map<NewPokemonVm>(pokemon);
+            return pokemonVm;
+        }
+
+        public void UpdatePokemon(NewPokemonVm newPokemon)
+        {
+            var pokemon = _mapper.Map<Pokemon>(newPokemon);
+            _pokemonRepo.UpdatePokemon(pokemon);
+        }
+
         public PokemonDetailsVm GetPokemonDetails(int pokemonId)
         {
-            var pokemon = _pokemonRepo.GetPokemon(pokemonId);
+            var pokemon = _pokemonRepo.GetPokemonById(pokemonId);
             var pokemonVm = new PokemonDetailsVm();
             pokemonVm.Id = pokemon.Id;
             pokemonVm.PokemonNumber = pokemon.PokedexNumber;
@@ -62,6 +75,6 @@ namespace PokedexMVC.Application.Services
             return pokemonVm;   
                         
         }
-
+      
     }
 }

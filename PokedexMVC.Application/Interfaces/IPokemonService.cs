@@ -1,4 +1,5 @@
 ﻿using PokedexMVC.Application.Viewmodels.Pokemon;
+using PokedexMVC.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,7 @@ namespace PokedexMVC.Application.Interfaces
         ListGetAllPokemonVm GetAllPokemonForList(int pageSize, int pageNumber, string searchString);
         int AddPokemon(NewPokemonVm pokemon);
         PokemonDetailsVm GetPokemonDetails(int pokemonId);
+        NewPokemonVm GetPokemonForEdit(int pokemonId);
+        void UpdatePokemon(NewPokemonVm pokemon);
     }
 }

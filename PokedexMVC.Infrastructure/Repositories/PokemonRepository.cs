@@ -36,7 +36,7 @@ namespace PokedexMVC.Infrastructure.Repositories
             }
         }
 
-        public Pokemon GetPokemon(int pokemonId) 
+        public Pokemon GetPokemonById(int pokemonId) 
         {
             var pokemon = _context.Pokemons.FirstOrDefault(i => i.Id == pokemonId);           
             return pokemon;
@@ -47,6 +47,14 @@ namespace PokedexMVC.Infrastructure.Repositories
             var pokemon = _context.Pokemons.FirstOrDefault(i => i.PokedexNumber == pokemonNumber);
             return pokemon;
 
+        }
+
+        public void UpdatePokemon(Pokemon pokemon)
+        {
+            _context.Attach(pokemon);
+            _context.Entry(pokemon).Property("Name").IsModified = true;
+            _context.Entry(pokemon).Property("PokedexNumber").IsModified = true;
+            _context.SaveChanges();
         }
 
         public IQueryable<Pokemon> GetAllPokemons()
