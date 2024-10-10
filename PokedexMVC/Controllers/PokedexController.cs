@@ -90,7 +90,7 @@ namespace PokedexMVC.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
+        
         public IActionResult DeletePokemon(int id) 
         {
             _pokemonService.DeletePokemon(id);
