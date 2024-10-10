@@ -15,5 +15,6 @@ namespace PokedexMVC.Application.Interfaces
         PokemonDetailsVm GetPokemonDetails(int pokemonId);
         NewPokemonVm GetPokemonForEdit(int pokemonId);
         void UpdatePokemon(NewPokemonVm pokemon);
+        void DeletePokemon(int pokdemonId);
     }
 }

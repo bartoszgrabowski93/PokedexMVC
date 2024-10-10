@@ -75,6 +75,15 @@ namespace PokedexMVC.Application.Services
             return pokemonVm;   
                         
         }
+
+        public void DeletePokemon(int pokemonId)
+        {
+            var pokemonToDelete = _pokemonRepo.GetPokemonById(pokemonId);
+            if (pokemonToDelete != null)
+            {
+                _pokemonRepo.DeletePokemon(pokemonToDelete.Id);
+            }
+        }
       
     }
 }
