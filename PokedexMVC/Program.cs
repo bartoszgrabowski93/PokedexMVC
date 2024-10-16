@@ -20,7 +20,6 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews().AddFluentValidation();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure();
-builder.Services.AddTransient<IValidator<NewPokemonVm>, NewPokemonValidator>();
 
 
 var app = builder.Build();

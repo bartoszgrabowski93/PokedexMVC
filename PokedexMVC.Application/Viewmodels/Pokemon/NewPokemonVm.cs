@@ -39,8 +39,8 @@ namespace PokedexMVC.Application.Viewmodels.Pokemon
         public NewPokemonValidator()
         {
             RuleFor(x => x.Id).NotNull();
-            RuleFor(x => x.PokemonNumber).NotNull();
-            RuleFor(x => x.PokemonNumber).InclusiveBetween(1, 1100);
+            RuleFor(x => x.PokedexNumber).NotNull();
+            RuleFor(x => x.PokedexNumber).InclusiveBetween(1, 1100);
             RuleFor(x => x.Name).NotNull();
             RuleFor(x => x.Name).MaximumLength(255);
         }
