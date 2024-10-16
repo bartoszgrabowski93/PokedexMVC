@@ -58,9 +58,9 @@ namespace PokedexMVC.Web.Controllers
          public IActionResult AddPokemon(NewPokemonVm model)
         {
             var id = _pokemonService.AddPokemon(model);
-            return View();
-        } 
-        
+            return RedirectToAction("Index");
+        }
+
         /*
         [HttpGet]
         public IActionResult AddPokemonDescription(int pokemonId)
@@ -74,6 +74,28 @@ namespace PokedexMVC.Web.Controllers
             return View();
         }        
         */
+
+        [HttpGet]
+        public IActionResult EditPokemon(int id)
+        {
+            var pokemon = _pokemonService.GetPokemonForEdit(id);
+            return View(pokemon);
+
+        }
+
+        [HttpPost]
+        public IActionResult EditPokemon(NewPokemonVm pokemon)
+        {
+            _pokemonService.UpdatePokemon(pokemon);
+            return RedirectToAction("Index");
+        }
+
+        
+        public IActionResult DeletePokemon(int id) 
+        {
+            _pokemonService.DeletePokemon(id);
+            return RedirectToAction("Index");
+        }
     }
 
 }
