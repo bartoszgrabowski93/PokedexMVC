@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using FluentValidation;
+//using FluentValidation;
 using PokedexMVC.Application.Mapping;
 using System;
 using System.Collections.Generic;
@@ -24,7 +24,7 @@ namespace PokedexMVC.Application.Viewmodels.Pokemon
         }
     }
 
-    public class NewPokemonValidaton : AbstractValidator<NewPokemonVm>
+    /*public class NewPokemonValidaton : AbstractValidator<NewPokemonVm>
     {
         public NewPokemonValidaton()
         {
@@ -45,5 +45,6 @@ namespace PokedexMVC.Application.Viewmodels.Pokemon
             RuleFor(x => x.Name).MaximumLength(255);
         }
     }
+    */
 }
 
