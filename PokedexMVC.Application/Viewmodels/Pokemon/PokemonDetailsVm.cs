@@ -13,11 +13,11 @@ namespace PokedexMVC.Application.Viewmodels.Pokemon
     {
         public int Id { get; set; }
         
-        public int PokemonNumber { get; set; }
+        public int PokedexNumber { get; set; }
         public string Name { get; set; }
-        public int TypingId { get; set; }
-        public Typing Typing { get; set; }
-        public byte[] Sprite { get; set; }
+        public int? TypingId { get; set; }
+        public Typing? Typing { get; set; }
+        public byte[]? Sprite { get; set; }
 
         public void Mapping(Profile profile)
         {

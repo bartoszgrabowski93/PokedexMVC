@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PokedexMVC.Application.Interfaces;
 using PokedexMVC.Application.Services;
 using PokedexMVC.Application.Viewmodels.Pokemon;
+using PokedexMVC.Web.Filters;
 
 
 
@@ -16,11 +17,12 @@ namespace PokedexMVC.Web.Controllers
         {
             _pokemonService = pokemonService;
         }
-        // GET: PokedexController
+        
         [HttpGet]
+        [CheckPermission("Read")]
         public IActionResult Index()
         {            
-             var model = _pokemonService.GetAllPokemonForList(3, 1, "");
+             var model = _pokemonService.GetAllPokemonForList(10, 1, "");
             return View(model);            
         }
         [HttpPost]
@@ -39,21 +41,19 @@ namespace PokedexMVC.Web.Controllers
         }
 
         // GET: PokedexController/Details/5
-        public IActionResult Details(int id)
+        public IActionResult PokemonDetails(int id)
         {
             var model = _pokemonService.GetPokemonDetails(id);
             return View(model);
         }
 
-        // GET: PokedexController/Create
+        
         [HttpGet]
         public IActionResult AddPokemon()
         {
             return View(new NewPokemonVm());
         }
-
-        // POST: PokedexController/Create
-        
+                
         [HttpPost]        
          public IActionResult AddPokemon(NewPokemonVm model)
         {
