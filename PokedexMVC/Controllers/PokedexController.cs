@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PokedexMVC.Application.Interfaces;
 using PokedexMVC.Application.Services;
@@ -19,13 +20,14 @@ namespace PokedexMVC.Web.Controllers
         }
         
         [HttpGet]
-        [CheckPermission("Read")]
+        [Authorize(Roles = "Admin, DataManager, User")]
         public IActionResult Index()
         {            
              var model = _pokemonService.GetAllPokemonForList(10, 1, "");
             return View(model);            
         }
         [HttpPost]
+        [Authorize(Roles = "Admin, DataManager, User")]
         public IActionResult Index(int pageSize, int? pageNumber, string searchString)
         {
             if (!pageNumber.HasValue)
@@ -41,6 +43,7 @@ namespace PokedexMVC.Web.Controllers
         }
 
         // GET: PokedexController/Details/5
+        [Authorize(Roles = "Admin, DataManager, User")]
         public IActionResult PokemonDetails(int id)
         {
             var model = _pokemonService.GetPokemonDetails(id);
@@ -49,13 +52,15 @@ namespace PokedexMVC.Web.Controllers
 
         
         [HttpGet]
+        [Authorize(Roles = "Admin, DataManager")]
         public IActionResult AddPokemon()
         {
             return View(new NewPokemonVm());
         }
                 
-        [HttpPost]        
-         public IActionResult AddPokemon(NewPokemonVm model)
+        [HttpPost]
+        [Authorize(Roles = "Admin, DataManager")]
+        public IActionResult AddPokemon(NewPokemonVm model)
         {
             _pokemonService.AddPokemon(model);
             return RedirectToAction("Index");
@@ -76,6 +81,7 @@ namespace PokedexMVC.Web.Controllers
         */
 
         [HttpGet]
+        [Authorize(Roles = "Admin, DataManager")]
         public IActionResult EditPokemon(int id)
         {
             var pokemon = _pokemonService.GetPokemonForEdit(id);
@@ -84,6 +90,7 @@ namespace PokedexMVC.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult EditPokemon(NewPokemonVm pokemon)
         {
             _pokemonService.UpdatePokemon(pokemon);
