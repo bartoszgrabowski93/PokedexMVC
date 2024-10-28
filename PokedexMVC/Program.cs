@@ -38,9 +38,10 @@ services.Configure<IdentityOptions>(options =>
 });
 
 services.AddAuthentication().AddGoogle(options =>{
-    
-    options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+
     options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+    options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+    
 });
 
 var app = builder.Build();
