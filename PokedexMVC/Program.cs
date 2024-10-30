@@ -37,12 +37,12 @@ services.Configure<IdentityOptions>(options =>
     options.User.RequireUniqueEmail = true;
 });
 
-services.AddAuthentication().AddGoogle(options =>{
-
-    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
-    options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
-    
-});
+services.AddAuthentication()
+    .AddGoogle(googleOptions =>{
+        IConfigurationSection googleAuthNSection = builder.Configuration.GetSection("Authentication:Google");
+        googleOptions.ClientId = googleAuthNSection["ClientId"];
+        googleOptions.ClientSecret = googleAuthNSection["ClientSecret"];    
+    });
 
 var app = builder.Build();
 
