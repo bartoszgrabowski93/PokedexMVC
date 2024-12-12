@@ -11,6 +11,7 @@ namespace PokedexMVC.Domain.Model
         public int Id { get; set; }
         public int PokedexNumber { get; set; }
         public string Name { get; set; } 
+        public int typeComboId { get; set; }
         public TypeCombination TypeCombo { get; set; }
         // public byte[] Sprite { get; set; }
         public ICollection<PokemonAbility> PokemonAbilities { get; set; }     
