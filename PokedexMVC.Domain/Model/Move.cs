@@ -10,8 +10,7 @@ namespace PokedexMVC.Domain.Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int TypeId { get; set; }
-        public virtual Typing Type { get; set; }
+        public BasicType MoveType { get; set; }
         public bool IsPhisical { get; set; }
         public int Damage { get; set; }
         public int? EffectId { get; set; }
