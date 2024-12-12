@@ -7,16 +7,17 @@ namespace PokedexMVC.Infrastructure
 {
     public class Context : IdentityDbContext<IdentityUser>
     {
-        public DbSet<Ability> Abilities { get; set; }               
+        public DbSet<Ability> Abilities { get; set; }       
+        public DbSet<BasicType> BasicTypes { get; set; }
         public DbSet<Move> Moves { get; set; }
         public DbSet<Moveset> Movesets { get; set; }
         public DbSet<Pokemon> Pokemons { get; set; }
         public DbSet<PokemonAbility> PokemonAbility { get; set; }
-        public DbSet<PokemonDescription> PokemonDescriptions { get; set; }              
+        public DbSet<PokemonDescription> PokemonDescriptions { get; set; }    
         public DbSet<Statistic> Statistics { get; set; }
         public DbSet<StatusEffect> Effects { get; set; }
         public DbSet<TypeCharacteristics> TypeCharacteristics { get; set; }
-        public DbSet<Typing> Typings { get; set; }
+        public DbSet<TypeCombination> TypeCombinations { get; set; }
 
         public Context(DbContextOptions options) : base(options)
         {
@@ -40,10 +41,10 @@ namespace PokedexMVC.Infrastructure
                .HasOne(a => a.Statistic).WithOne(b => b.Pokemon)
                .HasForeignKey<Statistic>(e => e.PokemonRef);
 
-            builder.Entity<Typing>()
-                .HasOne(a => a.TypeCharacteristics).WithOne(b => b.Type)
-                .HasForeignKey<TypeCharacteristics>(e => e.TypeRef);
-            
+            builder.Entity<BasicType>()
+                .HasOne(bt => bt.TypeCharacteristics).WithOne(tc => tc.Type)
+                .HasForeignKey<TypeCharacteristics>(tc => tc.TypeRef);
+                            
 
             // Relacja Wiele-Wiele
             builder.Entity<PokemonAbility>()
@@ -58,6 +59,10 @@ namespace PokedexMVC.Infrastructure
                 .HasOne<Pokemon>(pa => pa.Pokemon)
                 .WithMany(p => p.PokemonAbilities)
                 .HasForeignKey(pa => pa.PokemonRef);
+
+            // Relacje inne
+
+            
 
         }
     }

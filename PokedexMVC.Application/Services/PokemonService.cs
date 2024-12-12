@@ -69,7 +69,7 @@ namespace PokedexMVC.Application.Services
             pokemonVm.Id = pokemon.Id;
             pokemonVm.PokemonNumber = pokemon.PokedexNumber;
             pokemonVm.Name = pokemon.Name;
-            pokemonVm.Typing = pokemon.Typing;
+            pokemonVm.Typing = pokemon.TypeCombo;
             // pokemonVm.Sprite = pokemon.Sprite;
                       
             return pokemonVm;   

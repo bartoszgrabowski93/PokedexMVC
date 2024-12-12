@@ -24,7 +24,7 @@ namespace PokedexMVC.Application.Services
 
         public int AddType(NewTypeVm model)
         {
-            var newTyping = new Typing();
+            var newTyping = new BasicType();
             newTyping.Id = model.Id;
             newTyping.Name = model.Name;
             _typingRepo.AddTyping(newTyping);
@@ -35,24 +35,21 @@ namespace PokedexMVC.Application.Services
         {
             var typings = _typingRepo.GetAllTypings();
             ListGetAllTypesVm listTypings = new ListGetAllTypesVm();
-            listTypings.AllTypes = new List<GetAllTypesVm>();
+            listTypings.AllBasicTypes = new List<GetAllBasicTypesVm>();
             foreach (var typing in typings)
             {
-                var typingVm = new GetAllTypesVm()
+                var typingVm = new GetAllBasicTypesVm()
                 {
                     Id = typing.Id,
                     Name = typing.Name
                 };
-                listTypings.AllTypes.Add(typingVm);
+                listTypings.AllBasicTypes.Add(typingVm);
             }
-            listTypings.Count = listTypings.AllTypes.Count;
+            listTypings.Count = listTypings.AllBasicTypes.Count;
             return listTypings;
         }
 
-        public DetailedTypeVm GetTypeDetails(int typeId)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public void SetPokemonDualType(int pokemonId, int primaryTypeId, int secondaryTypeId)
         {

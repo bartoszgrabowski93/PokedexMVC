@@ -9,11 +9,13 @@ namespace PokedexMVC.Domain.Interface
 {
     public interface ITypingRepository
     {
-        int AddTyping(Typing type);
+        int AddTyping(BasicType type);
 
         void DeleteTyping(int typingId);
 
-        IQueryable<Typing> GetAllTypings();
+        IQueryable<BasicType> GetAllTypings();
+        void SetTyping(Pokemon pokemon, TypeCombination typeCombo);
+       
        
     }
 }

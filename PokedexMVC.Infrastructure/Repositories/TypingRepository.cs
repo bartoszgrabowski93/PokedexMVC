@@ -16,18 +16,18 @@ namespace PokedexMVC.Infrastructure.Repositories
             _context = context;
         }
 
-        public int AddTyping(Typing type)
+        public int AddTyping(BasicType type)
         {
-            _context.Typings.Add(type);
+            _context.BasicTypes.Add(type);
             _context.SaveChanges();
             return type.Id;
         }
         public void DeleteTyping(int typingId)
         {
-            var typingToDelete = _context.Typings.Find(typingId);
+            var typingToDelete = _context.BasicTypes.Find(typingId);
             if (typingToDelete != null)
             {
-                _context.Typings.Remove(typingToDelete);
+                _context.BasicTypes.Remove(typingToDelete);
                 _context.SaveChanges();
             }else
             {
@@ -35,10 +35,17 @@ namespace PokedexMVC.Infrastructure.Repositories
             }
         }
 
-        public IQueryable<Typing> GetAllTypings()
+        public IQueryable<BasicType> GetAllTypings()
         {
-            IQueryable<Typing> typings = _context.Typings;
+            IQueryable<BasicType> typings = _context.BasicTypes;
             return typings; 
         }
+
+        public void SetTyping(Pokemon pokemon, TypeCombination typeCombo)
+        {
+            throw new NotImplementedException();
+        }
+
+            
     }
 }
