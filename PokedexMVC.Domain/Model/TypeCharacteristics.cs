@@ -10,7 +10,7 @@ namespace PokedexMVC.Domain.Model
     {   
         public int Id { get; set; }        
         public int TypeRef { get; set; }
-        public Typing Type { get; set; }
+        public BasicType Type { get; set; }
         
     }
 }
