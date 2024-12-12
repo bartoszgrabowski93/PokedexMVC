@@ -8,7 +8,7 @@ namespace PokedexMVC.Application.Viewmodels.Type
 {
     public class ListGetAllTypesVm
     {
-        public List<GetAllTypesVm> AllTypes { get; set; }
+        public List<GetAllBasicTypesVm> AllBasicTypes { get; set; }
         public int Count { get; set; }
     }
 }

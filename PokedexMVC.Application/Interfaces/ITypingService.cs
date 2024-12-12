@@ -10,7 +10,7 @@ namespace PokedexMVC.Application.Interfaces
     public interface ITypingService
     {
         ListGetAllTypesVm GetAllTypes();
-        DetailedTypeVm GetTypeDetails(int typeId);
+        
         void SetPokemonDualType(int pokemonId, int primaryTypeId, int secondaryTypeId);
         void SetPokemonType(int pokemonId, int typeId);
         int AddType(NewTypeVm model);

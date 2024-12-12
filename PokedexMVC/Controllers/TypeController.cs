@@ -16,12 +16,7 @@ namespace PokedexMVC.Web.Controllers
             var model = _typingService.GetAllTypes();
             return View(model);
         }
-
-        public IActionResult Details(int typeId)
-        {
-            var model = _typingService.GetTypeDetails(typeId);
-            return View(model);
-        }
+       
 
         /*
         [HttpGet]
